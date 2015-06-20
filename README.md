@@ -21,7 +21,9 @@ echo $html->a('Link to Github')->href('https://github.com/alissonnasc/HTML.class
 
 $img = $html->img()->src('img/some-image.png'); // $img is a object from HTMLElement Class
 
-$p = $html->p()->inject($img)->output(); // method *output()* return a result string
+$p = $html->p()->inject($img)->output();
+// method *output()* return a result string
+// method *inject()* add another object to make a string
 echo $p;
 
 //OR
