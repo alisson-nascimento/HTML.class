@@ -5,15 +5,14 @@
 
 <?=$html->h1("HTML Elements Generator Class")?>
 
-<?=$html->p('These are simple classes to write HTML elements in a simple and elegant way in PHP')?>
+<?=$html->p('HTML.class provides a simple, elegant and objective way to write HTML tags in PHP')?>
 
 <?php
-   
-   $li  = $html->li()->inject($html->a('Require classes and intance a  HTML object')->href('#'))->output();
-   $li .= $html->li()->inject($html->a('First Element - Basic')->href('#'))->output();
-   $li .= $html->li()->inject($html->a('Especial Elements')->href('#'))->output();
-   $li .= $html->li()->inject($html->a('Especial Attributes')->href('#'))->output();
-   
-   echo $html->ol($li);
+ echo $html->begin('ol');
+   echo $html->li()->inject($html->a('Require classes and intance a HTML object')->href('#'));
+   echo $html->li()->inject($html->a('First Element - Basic')->href('#'));
+   echo $html->li()->inject($html->a('Especial Elements')->href('#'));
+   echo $html->li()->inject($html->a('Especial Attributes')->href('#'));   
+ echo $html->end('ol');
 ?>
 

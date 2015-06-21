@@ -1,37 +1,52 @@
 <?php
 /**
- * Description of HtmlViewLib
+ * HTML Class
  *
- * @author alisson
+ * @author Alisson Nascimento
  */
 
 require('HTMLElement.php');
 
 class Html {
     
-    function __construct() {}
+    public function __construct() {}
     
-    function __call($name, $arguments=array()) {
+    public function __call($name, $arguments=array()) {
         if(empty($arguments)){$arguments[0]='';}
         $elementObject = new HTMLElement($name);
         $elementObject->set('text', $arguments[0]);
         return $elementObject;
     }
     
-    function select($opcoes = array(), $selected = '', $vazio = true){
+    public function begin($tag){
+        $elementObject = new HTMLElement($tag, true);
+        $elementObject->set('text', '');
+        return $elementObject;
+    }
+    
+    public function end($tag){
+        return "</{$tag}>";
+    }
+    
+    public function select($opcoes = array(), $selected = array(), $empty = false){
         
         $selected = is_array($selected)?$selected:array($selected);
         
-        $elementObject = new html_element('select');
+        $elementObject = new HTMLElement('select');
         $elementObject->set('text', '');
-        if($vazio){
+        if(!is_bool($empty)){
+            $option = new HTMLElement('option');
+            $stringOption = $option->value('')->set('text', $empty);
+            $elementObject->inject($stringOption);
+        }else if($empty){
             $option = new html_element('option');
             $stringOption = $option->value('')->set('text', '');
             $elementObject->inject($stringOption);
         }
+        
         foreach($opcoes as $value => $text){
             if(is_array($text)){
-                $optgroup = new html_element('optgroup');
+                $optgroup = new HTMLElement('optgroup');
                 $stringOptionGroup = $optgroup->label($value)->text('');
                 
                 foreach ($text as $key_value => $text_value) {
@@ -49,11 +64,11 @@ class Html {
                 $elementObject->inject($stringOptionGroup);
             }else{
                 if(!empty($selected) && (in_array($value, $selected))){
-                    $option = new html_element('option');
+                    $option = new HTMLElement('option');
                     $stringOption = $option->value($value)->set('text', $text)->set('selected', 'selected');
                     $elementObject->inject($stringOption);
                 }else{
-                    $option = new html_element('option');
+                    $option = new HTMLElement('option');
                     $stringOption = $option->value($value)->set('text', $text);
                     $elementObject->inject($stringOption);
                 }   

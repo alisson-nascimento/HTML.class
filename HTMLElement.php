@@ -81,7 +81,7 @@ class HTMLElement
 		}
 		else
 		{
-			$build.= ' />';
+			$build.= '>';
 		}
 		
 		//return it
@@ -104,8 +104,7 @@ class HTMLElement
     
     
     /* 
-        Especial Functions
-        
+        Especial Functions        
     */
     
     public function data($attr, $value) {
