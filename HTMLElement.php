@@ -10,12 +10,27 @@ class HTMLElement
 	    @var $type
 	*/
 	public $type = null;
+	/** 
+	    @var $attributes
+	*/
 	public $attributes = array();
+	/** 
+	    @var $self_closers
+	*/
 	public $self_closers =  array('input','img','hr','br','meta','link');
-    public $style = null;
+	/** 
+	    @var $style
+	*/
+        public $style = null;
+        /** 
+	    @var $list
+	*/
+        public $list = null;
+        public $listChecked = null;
+        
 	
 	/* constructor */
-	public function __construct($type, $self_closer = false){
+	public function __construct($type, $self_closer = false, $list = array()){
 		$this->type = strtolower($type);
 		if($self_closer){
 		    $this->self_closers[] = $this->type;
@@ -61,7 +76,7 @@ class HTMLElement
 	}
 	
 	/* build */
-	public function build(){
+	private function build(){
 		//start
 		$build = '<'.$this->type;
 		
@@ -87,14 +102,54 @@ class HTMLElement
 		//return it
 		return $build;
 	}
+        
+        private function buildInputGroup($type){
+            
+            $this->type = 'input';
+            $inputs = array();
+            $this->attributes['type'] = $type;
+            
+            $id = null;
+            
+            if(isset($this->attributes['id'])){
+                $id = $this->attributes['id'];
+            }
+            
+            foreach ($this->list as $k => $v){
+                
+                $this->attributes['id'] = $id . '_' . $k;
+                
+                if(in_array($k, $this->listChecked)){
+                    $this->attributes['checked'] = 'checked';
+                }else{
+                    unset($this->attributes['checked']);
+                }
+                
+                $inputs[] = $this->build();
+                $lable = new HTMLElement('label');
+                $inputs[] = $lable->set('text', $v)->set('for', $this->attributes['id'])->output();
+               
+            }
+            return join(' ', $inputs);
+        }
 	
-	/* spit it out */
-	public function output(){
+    /* spit it out */
+    public function output(){
+        if(in_array($this->type, array('radio', 'checkbox'))){
+            return $this->buildInputGroup($this->type);
+        }
         return $this->build();
-	}
+    }
         
     public function __toString() {
+        if(in_array($this->type, array('radio', 'checkbox'))){
+            return $this->buildInputGroup($this->type);
+        }
         return $this->build();
+    }
+    
+    public function escape() {
+        return htmlspecialchars($this->build());
     }
         
     public function __call($name, $arguments) {            
@@ -104,7 +159,7 @@ class HTMLElement
     
     
     /* 
-        Especial Functions        
+        Especial Attributes        
     */
     
     public function data($attr, $value) {
@@ -119,11 +174,12 @@ class HTMLElement
             foreach($css as $item => $value){
                 $style = "$item:$value;";
             }
+        }else if(empty($value)){
+            $this->set("style", $css);
         }else{
-            $style = "$css:$value;";            
+            $style = "$css:$value;";
+            $this->set("style", isset($this->attributes['style'])?$this->get('style').$style:$style);
         }
-        
-        $this->set("style", isset($this->attributes['style'])?$this->get('style').$style:$style);
         
         return $this;
     }
