@@ -66,10 +66,10 @@ echo HTML::begin('html');
             echo HTML::end('pre');
             
             echo HTML::h3('Select');
-                echo HTML::select($list, "1", $empty="Position")->id('radios')->name('radios')->class('hotizontal');            
+                echo HTML::select($list, "1", $empty="Position")->id('select')->name('select');            
                 echo HTML::begin('pre');
 
-                    echo 'echo HTML::select($list, "2", $empty="Position")->id("radios")->name("radios")->class("hotizontal");';
+                    echo 'echo HTML::select($list, "2", $empty="Position")->id("select")->name("select");';
 
                 echo HTML::end('pre');
             
@@ -83,18 +83,18 @@ echo HTML::begin('html');
                 echo HTML::end('pre');
             
             echo HTML::h3('Checkbox');
-                echo HTML::checkbox($list, array("1" , "2"))->id('radios')->name('radios')->class('hotizontal');
+                echo HTML::checkbox($list, array("1" , "2"))->id('checkbox')->name('checkbox')->class('hotizontal');
 
                 echo HTML::begin('pre');
 
-                    echo 'echo HTML::checkbox($list, array("1" , "2"))->id("radios")->name("radios")->class("hotizontal");';
+                    echo 'echo HTML::checkbox($list, array("1" , "2"))->id("checkbox")->name("checkbox")->class("hotizontal");';
 
                 echo HTML::end('pre');
             
             echo HTML::h3('Style');  
             
-            $style = array(
-                '.btn'=> array(
+            $style = array('.btn-group' => array(
+                ' .btn'=> array(
                     
                     'color'=>'#ccc',
                     'padding'=>'0',
@@ -108,12 +108,13 @@ echo HTML::begin('html');
                         'color'=>'#08c',
                     )
                 ),
+                ),
             );
             
            
             
-            echo HTML::pre("$ style = array(
-                '.btn'=> array(
+            echo HTML::pre("\$style = array('.btn-group' => array(
+                ' .btn'=> array(
                     
                     'color'=>'#ccc',
                     'padding'=>'0',
@@ -126,6 +127,7 @@ echo HTML::begin('html');
                     '.danger'=>array(
                         'color'=>'#08c',
                     )
+                ),
                 ),
             );");
             

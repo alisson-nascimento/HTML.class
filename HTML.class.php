@@ -116,7 +116,7 @@ class HTML {
                if(!is_array($value)){
                    $style .= "\t" . $attr .':'. $value . "\n";
                }else{
-                   $v = array($tag .' '. $attr=>$value);
+                   $v = array($tag . $attr=>$value);
                   // print_r( $v);
                    $style .= '}'. "\n";
                    $style .= self::style($v, null, false);

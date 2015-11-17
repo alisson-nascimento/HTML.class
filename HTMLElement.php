@@ -157,7 +157,6 @@ class HTMLElement
         return $this;
     }
     
-    
     /* 
         Especial Attributes        
     */
