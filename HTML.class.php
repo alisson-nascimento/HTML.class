@@ -114,7 +114,7 @@ class HTML {
             $style .= $tag . '{' . "\n";
             foreach ($attrs as $attr => $value) {
                if(!is_array($value)){
-                   $style .= "\t" . $attr .':'. $value . "\n";
+                   $style .= "\t" . $attr .':'. $value . ";\n";
                }else{
                    $v = array($tag . $attr=>$value);
                   // print_r( $v);
