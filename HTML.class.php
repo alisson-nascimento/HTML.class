@@ -2,7 +2,9 @@
 /**
  * HTML Class
  *
- * @author Alisson Nascimento
+ * @author Alisson Nascimento <alisson.sa.nascimento@gmail.com>
+ * @date 2015-11-27
+ * 
  */
 
 require('HTMLElement.php');
@@ -30,7 +32,9 @@ class HTML {
     }
     
     public function end($tag){
-        return "</{$tag}>";
+        $elementObject = new HTMLElement("/$tag", true);
+        $elementObject->set('text', '');
+        return $elementObject;
     }
     
     public function escape($txt){

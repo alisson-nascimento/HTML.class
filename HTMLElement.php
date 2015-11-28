@@ -1,57 +1,57 @@
 <?php
 /**
-Source : http://davidwalsh.name/create-html-elements-php-htmlelement-class
-Adapted by: Alisson Nascimento <alisson.sa.nascimento@gmail.com>
-  
+* Source : http://davidwalsh.name/create-html-elements-php-htmlelement-class
+* Adapted by: Alisson Nascimento <alisson.sa.nascimento@gmail.com>
+*  
 */
 class HTMLElement
 {
-	/** 
-	    @var $type
-	*/
-	public $type = null;
-	/** 
-	    @var $attributes
-	*/
-	public $attributes = array();
-	/** 
-	    @var $self_closers
-	*/
-	public $self_closers =  array('input','img','hr','br','meta','link');
-	/** 
-	    @var $style
-	*/
-        public $style = null;
-        /** 
-	    @var $list
-	*/
-        public $list = null;
-        public $listChecked = null;
-        
-	
-	/* constructor */
-	public function __construct($type, $self_closer = false, $list = array()){
-		$this->type = strtolower($type);
-		if($self_closer){
-		    $this->self_closers[] = $this->type;
-		}		
-	}
-	
-	/* get */
-	public function get($attribute){
-		return $this->attributes[$attribute];
-	}
-	
-	/* set -- array or key,value */
-	public function set($attribute,$value = ''){
-		if(!is_array($attribute)){
-			$this->attributes[$attribute] = $value;
-		}
-		else{
-			$this->attributes = array_merge($this->attributes,$attribute);
-		}
+    /** 
+        @var $type
+    */
+    public $type = null;
+    /** 
+        @var $attributes
+    */
+    public $attributes = array();
+    /** 
+        @var $self_closers
+    */
+    public $self_closers =  array('input','img','hr','br','meta','link');
+    /** 
+        @var $style
+    */
+    public $style = null;
+    /** 
+        @var $list
+    */
+    public $list = null;
+    public $listChecked = null;
+
+
+    /* constructor */
+    public function __construct($type, $self_closer = false, $list = array()){
+        $this->type = strtolower($type);
+        if($self_closer){
+            $this->self_closers[] = $this->type;
+        }		
+    }
+
+    /* get */
+    public function get($attribute){
+        return $this->attributes[$attribute];
+    }
+
+    /* set -- array or key,value */
+    public function set($attribute,$value = ''){
+            if(!is_array($attribute)){
+                    $this->attributes[$attribute] = $value;
+            }
+            else{
+                    $this->attributes = array_merge($this->attributes,$attribute);
+            }
         return $this;
-	}
+    }
 	
 	/* remove an attribute */
 	public function remove($att){
@@ -76,16 +76,16 @@ class HTMLElement
 	}
 	
 	/* build */
-	private function build(){
+	private function build($build = ""){
 		//start
-		$build = '<'.$this->type;
+		$build .= '<'.$this->type;
 		
 		//add attributes
 		if(count($this->attributes))
 		{
 			foreach($this->attributes as $key=>$value)
 			{
-				if($key != 'text') { $build.= ' '.$key.'="'.$value.'"'; }
+				if(!in_array($key, array('text'))) { $build.= ' '.$key.'="'.$value.'"'; }
 			}
 		}
 		
@@ -181,5 +181,9 @@ class HTMLElement
         }
         
         return $this;
+    }
+    
+    public function comment($value){
+        $this->attributes['comment'] = '<!-- ' . $value  . ' -->';
     }
 }

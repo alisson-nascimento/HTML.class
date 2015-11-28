@@ -18,13 +18,13 @@ echo HTML::begin('html');
             echo HTML::li()->inject(HTML::a('Especial Attributes')->href('#fourth'));   
         echo HTML::end('ol');
          
-        echo HTML::h2('Require HTML class')->id('#first');
+        echo HTML::h2('Require HTML class')->id('first');
             echo HTML::begin('div');
                 echo HTML::pre(HTML::escape("<?php include 'HTML.class.php' ?>"));
                 echo "Now you can use the static functions to write HTML tags and its attributes in chain mode";
             echo HTML::end('div');
             
-        echo HTML::h2('Writing Elements')->id('#second');
+        echo HTML::h2('Writing Elements')->id('second');
         
             echo HTML::begin('pre');
                 
@@ -58,7 +58,7 @@ echo HTML::begin('html');
                    
                 echo HTML::end('pre');
             
-        echo HTML::h2('Especial Elements')->id('#third');
+        echo HTML::h2('Especial Elements')->id('third');
             echo "You can write any tag with same structure shown above, except these guys:";
             echo HTML::begin('pre');
                 $list = array("1"=>"Primeiro", "2"=>"Segundo","3"=>"Terceiro");
@@ -135,7 +135,7 @@ echo HTML::begin('html');
             
             echo HTML::pre(htmlspecialchars(HTML::style($style)));
             
-        echo HTML::h2('Especial Attributes')->id('#fourth');
+        echo HTML::h2('Especial Attributes')->id('fourth');
         
     echo HTML::end('body'); 
 echo HTML::end('html'); 
