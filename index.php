@@ -11,14 +11,7 @@ echo HTML::begin('html');
 
         echo HTML::p('HTML.class provides a simple, elegant and objective way to write HTML tags in PHP');
 
-        echo HTML::begin('ol');
-            echo HTML::li()->inject(HTML::a('Require HTML class and intance a HTML object')->href('#first'));
-            echo HTML::li()->inject(HTML::a('Writing Elements')->href('#second'));
-            echo HTML::li()->inject(HTML::a('Especial Elements')->href('#third'));
-            echo HTML::li()->inject(HTML::a('Especial Attributes')->href('#fourth'));   
-        echo HTML::end('ol');
-         
-        echo HTML::h2('Require HTML class')->id('first');
+        echo HTML::h2('Include HTML class')->id('first');
             echo HTML::begin('div');
                 echo HTML::pre(HTML::escape("<?php include 'HTML.class.php' ?>"));
                 echo "Now you can use the static functions to write HTML tags and its attributes in chain mode";
