@@ -26,8 +26,10 @@ class HTMLElement
         @var $list
     */
     public $list = null;
+    /** 
+        @var $listChecked
+    */    
     public $listChecked = null;
-
 
     /* constructor */
     public function __construct($type, $self_closer = false, $list = array()){
@@ -54,56 +56,56 @@ class HTMLElement
     }
 	
 	/* remove an attribute */
-	public function remove($att){
-		if(isset($this->attributes[$att]))
-		{
-			unset($this->attributes[$att]);
-		}
-	}
-	
-	/* clear */
-	public function clear(){
-		$this->attributes = array();
-	}
-	
-	/* inject */
-	public function inject($object){
-		if(@get_class($object) == __class__)
-		{
-			$this->attributes['text'].= $object->build();
-		}
-        return $this;
-	}
-	
-	/* build */
-	private function build($build = ""){
-		//start
-		$build .= '<'.$this->type;
-		
-		//add attributes
-		if(count($this->attributes))
-		{
-			foreach($this->attributes as $key=>$value)
-			{
-				if(!in_array($key, array('text'))) { $build.= ' '.$key.'="'.$value.'"'; }
-			}
-		}
-		
-		//closing
-		if(!in_array($this->type,$this->self_closers))
-		{
-			$build.= '>'.$this->attributes['text'].'</'.$this->type.'>';
-		}
-		else
-		{
-			$build.= '>';
-		}
-		
-		//return it
-		return $build;
-	}
-        
-        private function buildInputGroup($type){
+    public function remove($att){
+            if(isset($this->attributes[$att]))
+            {
+                    unset($this->attributes[$att]);
+            }
+    }
+
+    /* clear */
+    public function clear(){
+            $this->attributes = array();
+    }
+
+    /* inject */
+    public function inject($object){
+            if(@get_class($object) == __class__)
+            {
+                    $this->attributes['text'].= $object->build();
+            }
+    return $this;
+    }
+
+    /* build */
+    private function build($build = ""){
+            //start
+            $build .= '<'.$this->type;
+
+            //add attributes
+            if(count($this->attributes))
+            {
+                    foreach($this->attributes as $key=>$value)
+                    {
+                            if(!in_array($key, array('text'))) { $build.= ' '.$key.'="'.$value.'"'; }
+                    }
+            }
+
+            //closing
+            if(!in_array($this->type,$this->self_closers))
+            {
+                    $build.= '>'.$this->attributes['text'].'</'.$this->type.'>';
+            }
+            else
+            {
+                    $build.= '>';
+            }
+
+            //return it
+            return $build;
+    }
+
+    private function buildInputGroup($type){
             
             $this->type = 'input';
             $inputs = array();
@@ -157,8 +159,8 @@ class HTMLElement
         return $this;
     }
     
-    /* 
-        Especial Attributes        
+    /** 
+        Especial Attributes Functions       
     */
     
     public function data($attr, $value) {
@@ -181,9 +183,5 @@ class HTMLElement
         }
         
         return $this;
-    }
-    
-    public function comment($value){
-        $this->attributes['comment'] = '<!-- ' . $value  . ' -->';
     }
 }

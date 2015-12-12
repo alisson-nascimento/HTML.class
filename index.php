@@ -1,5 +1,5 @@
 <?php
-include 'HTML.class.php';
+require('HTML.php');
 
 echo HTML::begin('html');
     echo HTML::begin('head');
@@ -94,8 +94,7 @@ echo HTML::begin('html');
             echo HTML::h3('Style');  
             
             $style = array('.btn-group' => array(
-                ' .btn'=> array(
-                    
+                ' .btn'=> array(                    
                     'color'=>'#ccc',
                     'padding'=>'0',
                     '.primary'=>array(
@@ -114,8 +113,7 @@ echo HTML::begin('html');
            
             
             echo HTML::pre("\$style = array('.btn-group' => array(
-                ' .btn'=> array(
-                    
+                ' .btn'=> array(                    
                     'color'=>'#ccc',
                     'padding'=>'0',
                     '.primary'=>array(
@@ -136,6 +134,8 @@ echo HTML::begin('html');
             echo HTML::pre(htmlspecialchars(HTML::style($style)));
             
         echo HTML::h2('Especial Attributes')->id('fourth');
+        
+        echo HTML::p("TODO");
         
     echo HTML::end('body'); 
 echo HTML::end('html'); 

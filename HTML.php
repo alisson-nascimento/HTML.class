@@ -11,41 +11,34 @@ require('HTMLElement.php');
 
 class HTML {
         
-    public function __call($name, $arguments=array()) {
+    public static function __callStatic($name, $arguments=array()) {
         if(empty($arguments)){$arguments[0]='';}
         $elementObject = new HTMLElement($name);
         $elementObject->set('text', $arguments[0]);
         return $elementObject;
     }
     
-     public static function __callStatic($name, $arguments=array()) {
-        if(empty($arguments)){$arguments[0]='';}
-        $elementObject = new HTMLElement($name);
-        $elementObject->set('text', $arguments[0]);
-        return $elementObject;
-    }
-    
-    public function begin($tag){
+    public static function begin($tag){
         $elementObject = new HTMLElement($tag, true);
         $elementObject->set('text', '');
         return $elementObject;
     }
     
-    public function end($tag){
+    public static function end($tag){
         $elementObject = new HTMLElement("/$tag", true);
         $elementObject->set('text', '');
         return $elementObject;
     }
     
-    public function escape($txt){
+    public static function escape($txt){
         return htmlspecialchars($txt);
     }
     
     /*
-    Especial Tags    
+    Especial Tags Function    
      */ 
     
-    public function select($opcoes = array(), $selected = array(), $empty = false){
+    public static function select($opcoes = array(), $selected = array(), $empty = false){
         
         $selected = is_array($selected)?$selected:array($selected);
         
@@ -96,7 +89,7 @@ class HTML {
         return $elementObject;
     }
     
-    public function radio($list = array(), $checked = array()){
+    public static function radio($list = array(), $checked = array()){
         
         $elementObject = new HTMLElement('radio');
         $elementObject->list = $list;
@@ -104,7 +97,7 @@ class HTML {
         return $elementObject;
     }
     
-    public function checkbox($list = array(), $checked = array()){
+    public static function checkbox($list = array(), $checked = array()){
       
         $elementObject = new HTMLElement('checkbox');
         $elementObject->list = $list;
@@ -112,7 +105,7 @@ class HTML {
         return $elementObject;
     }
     
-    public function style($styles = array(), $style = "<style>\n", $close = true){
+    public static function style($styles = array(), $style = "<style>\n", $close = true){
         
         foreach($styles as $tag => $attrs){
             $style .= $tag . '{' . "\n";
