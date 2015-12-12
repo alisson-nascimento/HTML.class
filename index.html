@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Html.class by alissonnasc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Html.class</h1>
+      <h2 class="project-tagline">HTML.class provides a simple, elegant and objective way to write HTML tags in PHP</h2>
+      <a href="https://github.com/alissonnasc/HTML.class" class="btn">View on GitHub</a>
+      <a href="https://github.com/alissonnasc/HTML.class/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alissonnasc/HTML.class/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="htmlclass" class="anchor" href="#htmlclass" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML.class</h1>
+
+<p>HTML.class provides a simple, elegant and objective way to write HTML tags in PHP</p>
+
+<h2>
+<a id="include-html-class" class="anchor" href="#include-html-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>Include HTML class</h2>
+
+<pre><code>&lt;?php include 'HTML.class.php' ?&gt;
+</code></pre>
+
+<p>Now you can use the static functions to write HTML tags and its attributes in chain mode.</p>
+
+<h2>
+<a id="writing-elements" class="anchor" href="#writing-elements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Writing Elements</h2>
+
+<pre><code>/* You can echo this code */
+echo HTML::h1('This is a title');
+/* or call output() function */
+HTML::h2('This is a second title')-&gt;output();
+/* and use chain mode to set attributes */
+echo HTML::a('A link to google.com')-&gt;href('http:://google.com.br')-&gt;class('link');
+</code></pre>
+
+<h3>
+<a id="start-a-block" class="anchor" href="#start-a-block" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start a block</h3>
+
+<pre><code>echo HTML::begin('div')-&gt;class('block')-&gt;id('content');
+echo HTML::p(There is some content);
+echo HTML::end('div');
+</code></pre>
+
+<h2>
+<a id="especial-tags-function" class="anchor" href="#especial-tags-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Especial Tags Function</h2>
+
+<p>You can write any tag with same structure shown above, except these guys:</p>
+
+<pre><code>/* Let's use this list */
+$list = ["1"=&gt;"First","Second","Third"];
+</code></pre>
+
+<h3>
+<a id="select" class="anchor" href="#select" aria-hidden="true"><span class="octicon octicon-link"></span></a>Select</h3>
+
+<pre><code>echo HTML::select($list, "2", $empty="Position")-&gt;id("select")-&gt;name("select");
+</code></pre>
+
+<h3>
+<a id="radio" class="anchor" href="#radio" aria-hidden="true"><span class="octicon octicon-link"></span></a>Radio</h3>
+
+<pre><code>echo HTML::radio($list, "2")-&gt;id("radios")-&gt;name("radios")-&gt;class("hotizontal");
+</code></pre>
+
+<h3>
+<a id="checkbox" class="anchor" href="#checkbox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checkbox</h3>
+
+<pre><code>echo HTML::checkbox($list, ["1" , "2"])-&gt;id("checkbox")-&gt;name("checkbox")-&gt;class("hotizontal");
+</code></pre>
+
+<h3>
+<a id="style" class="anchor" href="#style" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style</h3>
+
+<p>Now, we gonna write some CSS.
+This code: </p>
+
+<pre><code>$style = ['.btn-group' =&gt; [
+               ' .btn'=&gt; [                    
+                        'color'=&gt;'#ccc',
+                        'padding'=&gt;'0',
+                        '.primary'=&gt;[
+                                    'color'=&gt;'#08c',
+                                    '.active'=&gt;['color'=&gt;'#08c'],
+                        ],
+                        '.danger'=&gt;['color'=&gt;'#F66']
+                ],
+            ],
+        ];
+echo HTML::style($style)
+</code></pre>
+
+<p>Out this:</p>
+
+<pre><code>&lt;style&gt;
+     .btn-group{
+      }
+     .btn-group .btn{
+          color:#ccc;
+          padding:0;
+      }
+     .btn-group .btn.primary{
+          color:#08c;
+      }
+     .btn-group .btn.primary.active{
+          color:#081;
+      }
+     .btn-group .btn.danger{
+          color:#08c;
+      }
+&lt;/style&gt;
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/alissonnasc/HTML.class">Html.class</a> is maintained by <a href="https://github.com/alissonnasc">alissonnasc</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
